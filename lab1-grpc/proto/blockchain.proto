@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+//blockchain service and the function definition
+service BlockChain {
+  rpc AddBlock(AddBlockRequest) returns (AddBlockResponse) {}
+  rpc QueryBlock(QueryBlockRequest) returns (QueryBlockResponse) {}
+}
+
+//request message definition
+message AddBlockRequest {
+  string data = 1;
+}
+//response message definition
+message AddBlockResponse {
+  string hash = 1;
+}
+
+//block data structure definition
+message Block {
+  string data = 1;
+  string hash = 2;
+}
+
+//request message definition
+message QueryBlockRequest {}
+//response message definition
+message QueryBlockResponse {
+  Block block= 1;
+}
+
