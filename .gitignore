@@ -3,3 +3,6 @@
 
 # Python runtime
 __pycache__/
+
+# gRPC
+*pb2*.py
