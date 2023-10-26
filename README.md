@@ -96,6 +96,50 @@ $ python client_listening.py
 
 
 
+## Lab 2 - Proof-of-Work in gRPC
+
+In this lab, we have implemented a toy Proof-of-Work (PoW) blockchain node using gRPC:
+
+- Server (node): `lab2-pow/node.py`
+- Client (user): `lab2-pow/propose.py`
+
+To run the application, first go to `lab2-pow/` and run:
+
+```shell
+$ python -m grpc_tools.protoc --proto_path=./proto/ --python_out=. --grpc_python_out=. ./proto/blockchain.proto
+```
+
+This regenerates `blockchain_pb2.py` which contains our generated request and response classes and `blockchain_pb2_grpc.py` which contains our generated client and server classes.
+
+Then you can initiate `Node1` from `terminal1` using:
+
+```shell
+# node.py <port> <node_name>
+$ python node.py 50051 Node1
+```
+
+After that, you may initiate `Node2` from `terminal2` using:
+
+```shell
+$ python node.py 50052 Node2
+```
+
+To propose a block, you may run the client from another `terminal3`:
+
+```shell
+$ python propose.py
+```
+
+### Configuration
+
+If you would like to build a blockchain network with more nodes, you would need to change the configurations in `node.py` and `propose.py`:
+
+```python
+node_network = ["50051", "50052", ...]
+```
+
+
+
 # Licence
 
 The MIT License
